@@ -1,0 +1,70 @@
+ Allocate Books (CODING NINJA)
+
+Problem statement
+Given an array ‘arr’ of integer numbers, ‘arr[i]’ represents the number of pages in the ‘i-th’ book.
+There are ‘m’ number of students, and the task is to allocate all the books to the students.
+Allocate books in such a way that:
+
+1. Each student gets at least one book.
+2. Each book should be allocated to only one student.
+3. Book allocation should be in a contiguous manner.
+
+You have to allocate the book to ‘m’ students such that the maximum number of pages assigned to a student is minimum.
+If the allocation of books is not possible, return -1.
+
+Example:
+Input: ‘n’ = 4 ‘m’ = 2 
+‘arr’ = [12, 34, 67, 90]
+Output: 113
+Explanation: All possible ways to allocate the ‘4’ books to '2' students are:
+12 | 34, 67, 90 - the sum of all the pages of books allocated to student 1 is ‘12’, and student two is ‘34+ 67+ 90 = 191’, so the maximum is ‘max(12, 191)= 191’.
+12, 34 | 67, 90 - the sum of all the pages of books allocated to student 1 is ‘12+ 34 = 46’, and student two is ‘67+ 90 = 157’, so the maximum is ‘max(46, 157)= 157’.
+12, 34, 67 | 90 - the sum of all the pages of books allocated to student 1 is ‘12+ 34 +67 = 113’, and student two is ‘90’, so the maximum is ‘max(113, 90)= 113’.
+We are getting the minimum in the last case.
+Hence answer is ‘113’.
+
+APPROACH : LOW=MAX, HIGH=SUM OF ALL ELEMENT. IF WE CAN ASSIGN "MID" PAGES INTO ALL STUDENT THEN INCREASE NO OF PAGE ELSE DECREASE NUMBER OF PAGE
+
+JAVA CODE :
+
+import java.util.*;
+public class Solution {
+    public static int findPages(ArrayList<Integer> arr, int n, int m) {
+        // Write your code here.
+        if(m>n){
+            return -1;
+        }
+        long max=0, sum=0;
+        for(int num : arr){
+            max=Math.max(max,num);
+            sum+=num;
+        }
+        
+        long low=max, high=sum;
+        while(low<=high){
+            long mid=(low+high)/2;
+            int st = canAllocate(mid,arr);
+            if(st<=m){
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+        return (int) low;
+    } 
+    private static int canAllocate(long page, ArrayList<Integer> list){
+        long cur=0;
+        int student=1;
+        for(int i=0; i<list.size(); i++){
+            int n=list.get(i);
+            if(cur+n <= page){
+                cur+=n;
+            }else{
+                student++;
+                cur=n;
+            }
+        }
+        //student-=1;
+        return student;
+    }
+}
