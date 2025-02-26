@@ -1,6 +1,4 @@
-DESCRIPTION :
-
-Find nth root of m
+## Find nth root of m
 You are given 2 numbers n and m, the task is to find n√m (nth root of m). If the root is not integer then returns -1.
 
 Examples :
@@ -28,7 +26,7 @@ APPROACH :- WE AREE GIVEN A NUMBER "M". WE HAVE TO FIND A INTEGER NUMBER X SUCH 
 IF ANY INTEGER IS NOT FOUND THEN RETURN -1;
 
 JAVA CODE:
-
+```
 class Solution {
     public int nthRoot(int n, int m) {
         // code here
