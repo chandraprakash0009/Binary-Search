@@ -20,6 +20,9 @@ Maximum time taken by any assignee is (15 * 5) = 75.
 Input: job[] = {4, 5, 10}, k = 2, t = 5  
 Output: 50  
 Explanation: The minimum time required to finish all the jobs is 50.  
+Assign {4, 5} to the first assignee.  
+Assign {10} to the second assignee.  
+Maximum time taken by any assignee is (4 + 5) * 5 = 50.  
 
 ### Java code
 ```
@@ -29,7 +32,7 @@ public class Main
 	public static void main(String[] args) {
 	    Solution obj = new Solution();
 	    int nums[] = {1,2,3,4,5,6,7};
-      int k=4, t=5;
+            int k=4, t=5;
 	    System.out.print(obj.func(nums,k,t));
 	    
 	}
@@ -68,8 +71,3 @@ class Solution {
         return count;
     }
 }
-
-
-Assign {4, 5} to the first assignee.
-Assign {10} to the second assignee.
-Maximum time taken by any assignee is (4 + 5) * 5 = 50.
